@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ContainerNav,
   Nav,
@@ -6,9 +6,16 @@ import {
   NavLinks,
   NavLinkItem,
   CustomNavLink,
+  MenuIcon,
 } from "./styles";
 
 const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <ContainerNav>
       <Nav>
@@ -16,27 +23,33 @@ const NavBar = () => {
           <a href="/">Xd.dev</a>
         </Logo>
 
-        <NavLinks>
-          <Logo>
-            <NavLinkItem>
-              <CustomNavLink to="/">Home</CustomNavLink>
-            </NavLinkItem>
-          </Logo>
-          <Logo>
-            <NavLinkItem>
-              <CustomNavLink to="/experience">Experience</CustomNavLink>
-            </NavLinkItem>
-          </Logo>
-          <Logo>
-            <NavLinkItem>
-              <CustomNavLink to="/projects">Projects</CustomNavLink>
-            </NavLinkItem>
-          </Logo>
-          <Logo>
-            <NavLinkItem>
-              <CustomNavLink to="/contact">Contact</CustomNavLink>
-            </NavLinkItem>
-          </Logo>
+        <MenuIcon onClick={toggleNav}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </MenuIcon>
+
+        <NavLinks isOpen={isOpen}>
+          <NavLinkItem>
+            <CustomNavLink to="/" onClick={toggleNav}>
+              Home
+            </CustomNavLink>
+          </NavLinkItem>
+          <NavLinkItem>
+            <CustomNavLink to="/experience" onClick={toggleNav}>
+              Experience
+            </CustomNavLink>
+          </NavLinkItem>
+          <NavLinkItem>
+            <CustomNavLink to="/projects" onClick={toggleNav}>
+              Projects
+            </CustomNavLink>
+          </NavLinkItem>
+          <NavLinkItem>
+            <CustomNavLink to="/contact" onClick={toggleNav}>
+              Contact
+            </CustomNavLink>
+          </NavLinkItem>
         </NavLinks>
       </Nav>
     </ContainerNav>

@@ -14,6 +14,7 @@ const fadeIn = keyframes`
 `;
 
 //HOME
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,6 +22,10 @@ export const Container = styled.div`
   padding: 100px;
   background-color: #f0f0f0;
   height: 100vh;
+
+  @media screen and (max-width: 768px) {
+    padding: 50px;
+  }
 `;
 
 export const Heading = styled.h1`
@@ -53,17 +58,28 @@ export const Icon = styled.i`
 export const Description = styled.div`
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  width: 60%;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+  }
 `;
 
 export const ImageContainer = styled.div`
   text-align: right;
   margin-left: 20px;
   transition: transform 0.3s ease;
+
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
   }
 `;
 
@@ -73,31 +89,19 @@ export const Image = styled.img`
   border-radius: 50%;
   overflow: hidden;
   animation: ${fadeIn} 0.5s ease-in-out;
+
+  @media screen and (max-width: 768px) {
+    width: 200px;
+  }
 `;
 
 export const TextWrapper = styled.div`
   text-align: left;
-`;
+  width: 100%;
 
-export const TabletMedia = styled.div`
   @media screen and (min-width: 768px) {
-    ${Container} {
-      padding: 50px;
-    }
-
-    ${ImageContainer} {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    ${Image} {
-      width: 45%;
-    }
-
-    ${TextWrapper} {
-      width: 45%;
-    }
+    width: auto;
+    margin-left: 20px;
   }
 `;
 
@@ -117,7 +121,6 @@ export const Nav = styled.nav`
 
 export const Logo = styled.div`
   font-size: 1.5rem;
-  transition: transform 0.3s ease;
 
   a {
     color: #fff;
@@ -128,19 +131,51 @@ export const Logo = styled.div`
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     }
   }
+`;
 
-  &:hover {
-    transform: scale(1.05);
+export const MenuIcon = styled.div`
+  display: none;
+
+  span {
+    height: 2px;
+    width: 25px;
+    background: #fff;
+    margin-bottom: 4px;
+    border-radius: 5px;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
   }
 `;
 
 export const NavLinks = styled.ul`
   list-style: none;
   display: flex;
+
+  @media screen and (max-width: 768px) {
+    margin: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    position: absolute;
+    top: 70px;
+    left: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
+    opacity: 1;
+    transition: left 0.3s ease;
+    background-color: ${({ isOpen }) => (isOpen ? "#1e1e1e" : "transparent")};
+  }
 `;
 
 export const NavLinkItem = styled.li`
   margin-right: 20px;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 `;
 
 export const CustomNavLink = styled(NavLink)`
@@ -284,7 +319,6 @@ const zoomIn = keyframes`
     transform: scale(1.01); 
   }
 `;
-
 
 //PROJECT
 export const ProjectContainer = styled.div`
