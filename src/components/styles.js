@@ -2,7 +2,15 @@
 
 import styled, { keyframes } from "styled-components";
 import { NavLink } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
 
+export const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+  body {
+    font-family: 'Bebas Neue', sans-serif;
+  }
+`;
 // Animation keyframes
 const fadeIn = keyframes`
   from {
